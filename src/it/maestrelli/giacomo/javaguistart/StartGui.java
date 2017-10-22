@@ -168,8 +168,9 @@ public class StartGui extends Application {
     }
     
     private void handleKeyboard(Scene scene, final Node root) {
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
+    	scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @SuppressWarnings("incomplete-switch")
+			@Override
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                     case Z:
@@ -191,9 +192,6 @@ public class StartGui extends Application {
     }
     
     private void buildMolecule() {
-        //======================================================================
-        // THIS IS THE IMPORTANT MATERIAL FOR THE TUTORIAL
-        //======================================================================
 
         final PhongMaterial redMaterial = new PhongMaterial();
         redMaterial.setDiffuseColor(Color.DARKRED);
@@ -207,18 +205,6 @@ public class StartGui extends Application {
         greyMaterial.setDiffuseColor(Color.DARKGREY);
         greyMaterial.setSpecularColor(Color.GREY);
 
-        // Molecule Hierarchy
-        // [*] moleculeXform
-        //     [*] oxygenXform
-        //         [*] oxygenSphere
-        //     [*] hydrogen1SideXform
-        //         [*] hydrogen1Xform
-        //             [*] hydrogen1Sphere
-        //         [*] bond1Cylinder
-        //     [*] hydrogen2SideXform
-        //         [*] hydrogen2Xform
-        //             [*] hydrogen2Sphere
-        //         [*] bond2Cylinder
         Xform moleculeXform = new Xform();
         Xform oxygenXform = new Xform();
         Xform hydrogen1SideXform = new Xform();
@@ -272,13 +258,11 @@ public class StartGui extends Application {
     @Override
     public void start(Stage primaryStage) {
         
-       // setUserAgentStylesheet(STYLESHEET_MODENA);
         System.out.println("start()");
 
         root.getChildren().add(world);
         root.setDepthTest(DepthTest.ENABLE);
 
-        // buildScene();
         buildCamera();
         buildAxes();
         buildMolecule();
